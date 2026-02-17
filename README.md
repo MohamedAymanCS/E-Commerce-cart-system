@@ -1,51 +1,26 @@
-class Product:
-    def __init__(self, name: str, price: float, stock: int):
-        self.name = name
-        self.price = price
-        self.stock = stock
+# E-Commerce Cart System (Python, OOP)
 
-    def reduce_stock(self, quantity: int) -> None:
-        if quantity > self.stock:
-            raise ValueError(f"Not enough stock available for {self.name}.")
-        self.stock -= quantity
+## Overview
+This project is a simple object-oriented shopping cart system built using Python.  
+It demonstrates core OOP principles such as encapsulation, modular design, and reusable components while simulating basic e-commerce functionality.
 
+## Features
+- Add products to a shopping cart  
+- Validate product stock before purchase  
+- Automatic stock reduction after adding to cart  
+- Calculate total cart price  
+- Display detailed cart summary  
 
-class Cart:
-    def __init__(self):
-        self.items = []
+## Technologies Used
+- Python  
+- Object-Oriented Programming (OOP)
 
-    def add_product(self, product: Product, quantity: int) -> None:
-        if quantity <= 0:
-            raise ValueError("Quantity must be greater than zero.")
+## Project Structure
+- **Product class** → Handles product information and stock management  
+- **Cart class** → Manages cart operations and price calculations  
 
-        product.reduce_stock(quantity)
-        self.items.append((product, quantity))
-        print(f"{product.name} added successfully.")
-
-    def total_price(self) -> float:
-        return sum(product.price * quantity for product, quantity in self.items)
-
-    def cart_details(self) -> None:
-        print("\n========== CART ==========")
-
-        if not self.items:
-            print("Your cart is empty.")
-        else:
-            for product, quantity in self.items:
-                print(f"{product.name}: {quantity} x {product.price} = {product.price * quantity}")
-
-            print("--------------------------")
-            print(f"Total: {self.total_price()}")
-
-        print("==========================\n")
-
-
-if __name__ == "__main__":
-    product1 = Product("iPhone", 70000, 15)
-    product2 = Product("Laptop", 30000, 20)
-
-    cart = Cart()
-    cart.add_product(product1, 4)
-    cart.add_product(product2, 8)
-
-    cart.cart_details()
+## How to Run
+1. Make sure Python is installed on your system.
+2. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/ecommerce-cart-system.git
